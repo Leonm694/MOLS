@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColour">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menu_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menu"
+        android:textColor="@color/buttonTextColour"
+        android:backgroundTint="@color/buttonColour"
+        android:textSize="25sp"
+        custom:layout_constraintBottom_toTopOf="@+id/latin_square2"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toBottomOf="@+id/latin_square1"
+        tools:ignore="MissingConstraints" />
+
+    <com.example.molsapplication.LatinSquare
+        android:id="@+id/latin_square2"
+        android:background="@color/latinSquareColour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        custom:layout_constraintBottom_toBottomOf="parent"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintHorizontal_bias="0.863"
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toTopOf="parent"
+        custom:layout_constraintVertical_bias="0.963">
+    </com.example.molsapplication.LatinSquare>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton1"
+        android:text="1"
+        android:textColor="@color/buttonTextColour"
+        android:backgroundTint="@color/buttonColour"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        custom:layout_constraintStart_toEndOf="@+id/latin_square1"
+        custom:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton2"
+        android:text="2"
+        android:textColor="@color/buttonTextColour"
+        android:backgroundTint="@color/buttonColour"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        custom:layout_constraintStart_toEndOf="@+id/latin_square1"
+        custom:layout_constraintTop_toBottomOf="@+id/materialButton1"
+        tools:ignore="MissingConstraints" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton3"
+        android:text="3"
+        android:textColor="@color/buttonTextColour"
+        android:backgroundTint="@color/buttonColour"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        custom:layout_constraintStart_toEndOf="@+id/latin_square1"
+        custom:layout_constraintTop_toBottomOf="@+id/materialButton2"
+        tools:ignore="MissingConstraints" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton4"
+        android:text="4"
+        android:textColor="@color/buttonTextColour"
+        android:backgroundTint="@color/buttonColour"
+        android:textSize="25sp"
+        android:visibility="visible"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        custom:layout_constraintStart_toEndOf="@+id/latin_square1"
+        custom:layout_constraintTop_toBottomOf="@+id/materialButton3"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="@color/buttonColour"
+        android:text="5"
+        android:textColor="@color/buttonTextColour"
+        android:textSize="25sp"
+        custom:layout_constraintEnd_toStartOf="@+id/latin_square2"
+        custom:layout_constraintTop_toTopOf="@+id/latin_square2" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/buttonColour"
+        android:text="6"
+        android:textColor="@color/buttonTextColour"
+        android:textSize="25sp"
+        custom:layout_constraintEnd_toStartOf="@+id/latin_square2"
+        custom:layout_constraintTop_toBottomOf="@+id/materialButton5" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/buttonColour"
+        android:text="7"
+        android:textColor="@color/buttonTextColour"
+        android:textSize="25sp"
+        custom:layout_constraintEnd_toStartOf="@+id/latin_square2"
+        custom:layout_constraintTop_toBottomOf="@+id/materialButton6" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/buttonColour"
+        android:text="8"
+        android:textColor="@color/buttonTextColour"
+        android:textSize="25sp"
+        custom:layout_constraintEnd_toStartOf="@+id/latin_square2"
+        custom:layout_constraintTop_toBottomOf="@+id/materialButton7"
+        tools:ignore="MissingConstraints" />
+
+    <com.example.molsapplication.LatinSquare
+        android:id="@+id/latin_square1"
+        android:background="@color/latinSquareColour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        custom:layout_constraintBottom_toBottomOf="parent"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintHorizontal_bias="0.136"
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toTopOf="parent"
+        custom:layout_constraintVertical_bias="0.036">
+
+    </com.example.molsapplication.LatinSquare>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
