@@ -11,13 +11,29 @@
         android:id="@+id/menu_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/buttonColour"
         android:text="Menu"
         android:textColor="@color/buttonTextColour"
-        android:backgroundTint="@color/buttonColour"
         android:textSize="25sp"
         custom:layout_constraintBottom_toTopOf="@+id/latin_square2"
         custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintHorizontal_bias="0.22"
         custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toBottomOf="@+id/latin_square1"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/solve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/buttonColour"
+        android:text="Solve"
+        android:textColor="@color/buttonTextColour"
+        android:textSize="25sp"
+        custom:layout_constraintBottom_toTopOf="@+id/latin_square2"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintHorizontal_bias="0.546"
+        custom:layout_constraintStart_toEndOf="@+id/menu_button"
         custom:layout_constraintTop_toBottomOf="@+id/latin_square1"
         tools:ignore="MissingConstraints" />
 

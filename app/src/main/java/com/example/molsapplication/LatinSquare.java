@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import java.util.Arrays;
 
 public class LatinSquare extends View {
     private int lineColour;
@@ -26,6 +25,10 @@ public class LatinSquare extends View {
 
     public int[][] getLatinSquareValues() {
         return latinSquareValues;
+    }
+
+    public int[] getColAndRow(){
+        return new int[]{col,row};
     }
 
     public void GridAttr (int newSize, int col, int col1, int[][] array){

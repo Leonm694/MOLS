@@ -9,6 +9,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Timer;
 
 public class Board extends Activity {
     int score = 0;
@@ -44,10 +45,8 @@ public class Board extends Activity {
                 for (int j = 0; j < value; j++)
                     alteredES[i][j] = Arrays.copyOf(newES[i][j], value);
             }
-
             a = alteredES[0];
             b = alteredES[1];
-
             fillArray(newES[0], value);
             fillArray(newES[1], value);
             fillArray(a, value);
@@ -78,6 +77,7 @@ public class Board extends Activity {
         Button button7 = findViewById(R.id.materialButton7);
         Button button8 = findViewById(R.id.materialButton8);
         Button menu = findViewById(R.id.menu_button);
+        Button solve = findViewById(R.id.solve);
 
         switch (value) {
             case 3:
@@ -131,6 +131,26 @@ public class Board extends Activity {
                 intent.putExtra("Value", value);
                 intent.putExtra("Mode", mode);
                 startActivity(intent);
+            }
+        });
+
+        solve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (value != 6) {
+                    int[] ls1ColRow = ls1.getColAndRow();
+                    int[] ls2ColRow = ls2.getColAndRow();
+                    int[] number = cleanUp(a, b, value, ls1ColRow, ls2ColRow);
+
+                    boolean pass = ls1.updateArray(number[0]);
+                    if (!pass) {
+                        ls2.updateArray(number[1]);
+                    }
+                    score = score + 3;
+                    isSolved(ls1, ls2, value);
+                } else{
+                    System.out.println("Cant solve MOLS for 6");
+                }
             }
         });
 
@@ -224,7 +244,6 @@ public class Board extends Activity {
         });
     }
 
-
     public void isSolved (LatinSquare latinSquareOne, LatinSquare latinSquareTwo, int size){
 
         int[][] a = latinSquareOne.getLatinSquareValues();
@@ -264,7 +283,7 @@ public class Board extends Activity {
 
     public boolean checkLine (int[][] array, int size){
         int columnMax;
-        int rowMax = 0;
+        int rowMax;
         int boundary = 0;
 
         for (int i = 0; i <= size; i++){
@@ -296,18 +315,44 @@ public class Board extends Activity {
                int positionOne = arrayOne[i][j];
                int positionTwo = arrayTwo[i][j];
                Object[] a ={positionOne,positionTwo};
+               if(positionOne == 0 || positionTwo == 0){
+                   return true;
+               }
 
                for (Object [] element : pairs){
-                   System.out.println("element = " + Arrays.deepToString(element));
-                   System.out.println("a = " + Arrays.deepToString(a));
 
                    if (Arrays.deepToString(element).equals(Arrays.deepToString(a))){
                        return false;
                    }
                }
                pairs.add(a);
+
            }
        }
+        return true;
+    }
+
+    public boolean mutualOrthCheck2 (int[][] arrayOne, int[][] arrayTwo, int size, ArrayList<int[]> frank){
+        ArrayList<int[]> pairs = new ArrayList<>();
+        for (int i = 0; i < frank.size(); i++){
+                int[] testPost = frank.get(i);
+                int positionOne = arrayOne[testPost[0]][testPost[1]];
+                int positionTwo = arrayTwo[testPost[0]][testPost[1]];
+                int[] a ={positionOne,positionTwo};
+                if(positionOne == 0 || positionTwo == 0){
+                    return true;
+                }
+
+                for (int [] element : pairs){
+
+                    if (Arrays.toString(element).equals(Arrays.toString(a))){
+                        System.out.println("compared" + Arrays.toString(a) + " to " + Arrays.toString(element) + " for " + "\n" +
+                                Arrays.deepToString(arrayOne) + " and \n" + Arrays.deepToString(arrayTwo));
+                        return false;
+                    }
+                }
+                pairs.add(a);
+            }
         return true;
     }
 
@@ -343,9 +388,6 @@ public class Board extends Activity {
             }
         }
 
-
-
-
     }
 
     public void blankArray (int[][] array, int value){
@@ -356,5 +398,126 @@ public class Board extends Activity {
         }
     }
 
+    public int[] nextSpace (int[][] array, int value){
+        for (int i = 0; i < value; i++){
+            for(int j = 0; j < value; j++){
+                if (array[i][j] == 0){
+                    return new int[]{i,j};
+                }
+            }
+        }
+        return null;
+    }
+
+    public boolean backtrack (int[][] array, int[][]arrayTwo, int value){
+        int[] ls1Pos = nextSpace(array, value);
+        int[] ls2Pos = nextSpace(arrayTwo, value);
+        int row;
+        int col;
+
+
+        if(ls1Pos == null){
+            if(ls2Pos == null){
+                return true;
+            }
+            else {
+               row = ls2Pos[0];
+               col = ls2Pos[1];
+            }
+        } else {
+            row = ls1Pos[0];
+            col = ls1Pos[1];
+        }
+
+        for(int i = 0; i < value; i++){
+            boolean line;
+            boolean mols;
+
+            if (ls1Pos != null){
+                ArrayList<int[]> pairs = new ArrayList<>();
+                line = true;
+                for(int j =0; j<value; j++){
+                    if ((array[row][j] == i + 1 && j != col) ||
+                            (array[j][col] == i + 1 && j != row)) {
+                        line = false;
+                        break;
+                    }
+                    for (int k=0; k<value; k++){
+                        if ((array[j][k] == i +1 && j != row && k != col) || (j == row && k == col)){
+                            int[] a ={j,k};
+                            pairs.add(a);
+
+                        }
+                    }
+                }
+                array[row][col] = i+1;
+                mols = mutualOrthCheck2(array, arrayTwo, value, pairs);
+                array[row][col] = 0;
+               if(mols && line){
+                    array[row][col] = i+1;
+                    if(backtrack(array, arrayTwo, value)){
+                        return true;
+                    }
+                    array[row][col] = 0;
+                }
+            }else {
+                ArrayList<int[]> pairs = new ArrayList<>();
+                line = true;
+                for(int j =0; j<value; j++){
+                    if ((arrayTwo[row][j] == i + 1 && j != col) ||
+                            (arrayTwo[j][col] == i + 1 && j != row)) {
+                        line = false;
+                        break;
+                    }
+                    for (int k=0; k<value; k++){
+                        if ((arrayTwo[j][k] == i +1 && j != row && k != col) || (j == row && k == col)){
+                            int[] a ={j,k};
+                            pairs.add(a);
+                        }
+                    }
+                }
+                arrayTwo[row][col] = i+1;
+                mols = mutualOrthCheck2(arrayTwo, array, value, pairs);
+                arrayTwo[row][col] = 0;
+
+                if(mols && line){
+                    arrayTwo[row][col] = i+1;
+                    if(backtrack(array, arrayTwo, value)){
+                        return true;
+                    }
+                    arrayTwo[row][col] = 0;
+                }
+            }
+        }
+        return false;
+    }
+
+    public int[] cleanUp (int[][] array, int[][]arrayTwo, int value, int[] ls1RC, int[] ls2RC){
+        int x = 0;
+        int y = 0;
+        int[][] a = new int[value][value];
+        int[][] b = new int[value][value];
+            for (int j = 0; j < value; j++){
+                a[j] = Arrays.copyOf(array[j], value);
+            }
+            for (int j = 0; j < value; j++) {
+                b[j] = Arrays.copyOf(arrayTwo[j], value);
+            }
+
+        System.out.println(backtrack(a, b, value));
+        System.out.println("a " + Arrays.deepToString(a));
+        System.out.println("b " + Arrays.deepToString(b));
+
+        if(ls1RC[0] != -1 || ls1RC[1] != -1){
+            System.out.println("wooo" + ls1RC[0] + " and" + ls1RC[1]);
+            x = a[ls1RC[1]-1][ls1RC[0]-1];
+        }
+
+        if(ls2RC[0] != -1 || ls2RC[1] != -1){
+            System.out.println("wooo" + ls2RC[0] + " and" + ls2RC[1]);
+            y = b[ls2RC[1]-1][ls2RC[0]-1];
+        }
+        return new int[]{x,y};
+    }
 
 }
