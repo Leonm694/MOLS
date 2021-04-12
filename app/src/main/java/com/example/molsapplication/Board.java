@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.Timer;
 
 public class Board extends Activity {
@@ -332,26 +335,18 @@ public class Board extends Activity {
         return true;
     }
 
-    public boolean mutualOrthCheck2 (int[][] arrayOne, int[][] arrayTwo, int size, ArrayList<int[]> frank){
-        ArrayList<int[]> pairs = new ArrayList<>();
+    public boolean mutualOrthCheck2 (int[][] arrayOne, int[][] arrayTwo, ArrayList<int[]> frank){
+        Set<Pair<Integer, Integer>> p = new HashSet<>();
         for (int i = 0; i < frank.size(); i++){
                 int[] testPost = frank.get(i);
                 int positionOne = arrayOne[testPost[0]][testPost[1]];
                 int positionTwo = arrayTwo[testPost[0]][testPost[1]];
-                int[] a ={positionOne,positionTwo};
-                if(positionOne == 0 || positionTwo == 0){
-                    return true;
-                }
+                Pair<Integer, Integer> pair = new Pair<>(positionOne,positionTwo);
 
-                for (int [] element : pairs){
-
-                    if (Arrays.toString(element).equals(Arrays.toString(a))){
-                        System.out.println("compared" + Arrays.toString(a) + " to " + Arrays.toString(element) + " for " + "\n" +
-                                Arrays.deepToString(arrayOne) + " and \n" + Arrays.deepToString(arrayTwo));
-                        return false;
-                    }
-                }
-                pairs.add(a);
+            if (p.contains(pair)){
+                return false;
+            }
+                p.add(pair);
             }
         return true;
     }
@@ -443,7 +438,9 @@ public class Board extends Activity {
                         break;
                     }
                     for (int k=0; k<value; k++){
-                        if ((array[j][k] == i +1 && j != row && k != col) || (j == row && k == col)){
+                        if (((array[j][k] == i +1) && (array[j][k] != 0)
+                                && (arrayTwo[j][k] != 0)) || (j == row && k == col)){
+
                             int[] a ={j,k};
                             pairs.add(a);
 
@@ -451,7 +448,7 @@ public class Board extends Activity {
                     }
                 }
                 array[row][col] = i+1;
-                mols = mutualOrthCheck2(array, arrayTwo, value, pairs);
+                mols = mutualOrthCheck2(array, arrayTwo, pairs);
                 array[row][col] = 0;
                if(mols && line){
                     array[row][col] = i+1;
@@ -460,7 +457,8 @@ public class Board extends Activity {
                     }
                     array[row][col] = 0;
                 }
-            }else {
+            }
+            else {
                 ArrayList<int[]> pairs = new ArrayList<>();
                 line = true;
                 for(int j =0; j<value; j++){
@@ -470,14 +468,15 @@ public class Board extends Activity {
                         break;
                     }
                     for (int k=0; k<value; k++){
-                        if ((arrayTwo[j][k] == i +1 && j != row && k != col) || (j == row && k == col)){
+                        if (((arrayTwo[j][k] == i +1) && (array[j][k] != 0)
+                                && (arrayTwo[j][k] != 0)) || (j == row && k == col)){
                             int[] a ={j,k};
                             pairs.add(a);
                         }
                     }
                 }
                 arrayTwo[row][col] = i+1;
-                mols = mutualOrthCheck2(arrayTwo, array, value, pairs);
+                mols = mutualOrthCheck2(array, arrayTwo, pairs);
                 arrayTwo[row][col] = 0;
 
                 if(mols && line){
