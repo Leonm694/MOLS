@@ -5,6 +5,15 @@
     <string name="_5_x_5">5 x 5</string>
     <string name="_4_x_4">4 x 4</string>
     <string name="_3_x_3">3 x 3</string>
-    <string name="select_game">Select Game</string>
+    <string name="select_game">Select</string>
     <string name="_6_x_6">6 x 6</string>
+
+    <string name="rules">Rules</string>
+
+    <string name="eulerConjecture">Euler Conjecture</string>
+
+    <string name="rule_script">The rules of the </string>
+    <string name="euler_story">Euler </string>
+
+
 </resources>

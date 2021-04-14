@@ -10,61 +10,61 @@
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:background="@color/backgroundColour"
-       android:orientation="vertical"
        android:gravity="center"
+       android:orientation="vertical"
        app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintHorizontal_bias="0.0"
        app:layout_constraintLeft_toLeftOf="parent"
        app:layout_constraintRight_toRightOf="parent"
        app:layout_constraintTop_toTopOf="parent"
-       app:layout_constraintVertical_bias="1.0">
+       app:layout_constraintVertical_bias="0.0">
 
       <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:textSize="40sp"
           android:text="Mutually Orthogonal"
-          android:textColor="@color/textColour" />
+          android:textColor="@color/textColour"
+          android:textSize="40sp" />
 
       <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:textSize="30sp"
-          android:text="Latin Squares"
           android:layout_marginBottom="50dp"
-          android:textColor="@color/textColour"  />
+          android:text="Latin Squares"
+          android:textColor="@color/textColour"
+          android:textSize="30sp" />
 
       <com.google.android.material.button.MaterialButton
           android:id="@+id/one_solution"
           android:layout_width="200dp"
           android:layout_height="wrap_content"
+          android:backgroundTint="@color/buttonColour"
           android:text="Finish the MOLS"
-          android:textColor="@color/buttonTextColour"
-          android:backgroundTint="@color/buttonColour"/>
+          android:textColor="@color/buttonTextColour" />
 
       <com.google.android.material.button.MaterialButton
-       android:id="@+id/all_solutions"
-       android:layout_width="200dp"
-       android:layout_height="wrap_content"
-       android:text="Create a MOLS"
-       android:textColor="@color/buttonTextColour"
-       android:backgroundTint="@color/buttonColour"/>
+          android:id="@+id/all_solutions"
+          android:layout_width="200dp"
+          android:layout_height="wrap_content"
+          android:backgroundTint="@color/buttonColour"
+          android:text="Create a MOLS"
+          android:textColor="@color/buttonTextColour" />
 
       <com.google.android.material.button.MaterialButton
           android:id="@+id/euler"
           android:layout_width="200dp"
           android:layout_height="wrap_content"
+          android:backgroundTint="@color/buttonColour"
           android:text="Euler Conjecture"
-          android:textColor="@color/buttonTextColour"
-          android:backgroundTint="@color/buttonColour"/>
+          android:textColor="@color/buttonTextColour" />
 
       <com.google.android.material.button.MaterialButton
           android:id="@+id/rule_page"
           android:layout_width="200dp"
           android:layout_height="wrap_content"
+          android:backgroundTint="@color/buttonColour"
           android:text="Rules"
-          android:textColor="@color/buttonTextColour"
-          android:backgroundTint="@color/buttonColour"/>
+          android:textColor="@color/buttonTextColour" />
 
    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.constraintlayout.widget.ConstraintLayout>

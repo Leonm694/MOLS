@@ -1,5 +1,4 @@
 package com.example.molsapplication;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +6,13 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
+
+/**
+ * Class for pop up menu that allows the user to navigate back to the menus from the game and
+ * restart any given level the user is playing.
+ * @author Leon Mills 979610
+ */
 
 public class PopUp extends Activity {
     @Override
@@ -46,10 +50,18 @@ public class PopUp extends Activity {
         title_text.setText(title);
         score_text.setText(score_to_text);
 
-        DisplayMetrics displayM = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayM);
-        int height = displayM.heightPixels;
-        int width = displayM.widthPixels;
+        /**
+         * These lines of code allows the activity to be viewed smaller than the screen to act as
+         * a pop up activity.
+         * This code was found on stack overflow at
+         * https://stackoverflow.com/questions/2306503/how-to-make-an-alert-dialog-fill-90-of-screen-size
+         * Co-answered by "Tunaki" and "Guilherme Pereira" in April 2016.
+         */
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
         getWindow().setLayout((int)(width*.8), (int)(height*.7));
 
     }

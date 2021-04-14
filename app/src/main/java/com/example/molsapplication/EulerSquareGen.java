@@ -7,6 +7,9 @@ it and/or modify it under the terms of the GNU General Public License as publish
 the Free Software Foundation and included in this library; either version 3 of the
 License, or any later version. */
 
+/**
+ * EulerSquareGen class used for generating euler squares to put into a puzzle format.
+ */
 class EulerSquareGen {
     public static final int Nmin = 3, Nmax = 7;
     public static boolean valid_N(final int N) {
@@ -49,6 +52,12 @@ class EulerSquareGen {
         N = N_;
     }
 
+    /**
+     * Method to ensure that a given 2d array is a latin square.
+     * @param L represents the 2D array that is being checked.
+     * @param N N represents the order of the Latin square.
+     * @return true value if it is indeed a Latin Square
+     */
     public static boolean is_latin(final int[][] L, final int N) {
         if (L.length != N) return false;
         for (int i = 0; i < N; ++i)
@@ -73,6 +82,11 @@ class EulerSquareGen {
         return true;
     }
 
+    /**
+     * Method to check that every pair accounted for
+     * @param b represents a 2d array of pairs
+     * @return true if value is found at every position
+     */
     private static boolean all_true(final boolean[][] b) {
         for (int i = 0; i < b.length; ++i)
             for (int j = 0; j < b[i].length; ++j)
@@ -80,6 +94,12 @@ class EulerSquareGen {
         return true;
     }
 
+    /**
+     * Method to check if a given 3D array equates to an Euler square.
+     * @param E represents a 3D array that should consist of 2 Latin squares
+     * @param N represents the order of the Latin squares found within the 3D array
+     * @return True if 2 Latin squares and all possible number pairings are accounted for.
+     */
     public static boolean is_euler(final int[][][] E, final int N) {
         if (E.length != 2) return false;
         if (! is_latin(E[0], N) || ! is_latin(E[1], N)) return false;
@@ -90,6 +110,14 @@ class EulerSquareGen {
         return all_true(found);
     }
 
+    /**
+     * Method to ensure all pairs of values in the Euler square are unique.
+     * @param A represents 2D array of pairs
+     * @param i repesents a value up to N, including N
+     * @param j repesents a value up to N, including N
+     * @param N represents the order of the Latin Square
+     * @return true if all positions are unique and every position is filled
+     */
     private static boolean all_different(final int[][] A, final int i, final int j,
                                          final int N) {
         final boolean[][] found = new boolean[N][N];
@@ -98,6 +126,12 @@ class EulerSquareGen {
         return all_true(found);
     }
 
+    /**
+     * Method to check if a given 2D array is orthogonal
+     * @param A
+     * @param N represents the order of the Latin Square
+     * @return true if the the arrays are mutually orthogonal
+     */
     public static boolean is_orth_array(final int[][] A, final int N) {
         if (A.length != N*N) return false;
         for (int i = 0; i < A.length; ++i)
