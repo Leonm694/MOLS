@@ -168,22 +168,22 @@ public class Board extends Activity {
                     // empty spaces exist, otherwise the function takes too long to solve.
                     if ((x < 45) || (x < 47 && value == 7)){
                         int[] ls1ColRow = ls1.getColAndRow();
-                    int[] ls2ColRow = ls2.getColAndRow();
-                    int[] number = cleanUp(a, b, value, ls1ColRow, ls2ColRow);
+                        int[] ls2ColRow = ls2.getColAndRow();
+                        int[] number = cleanUp(a, b, value, ls1ColRow, ls2ColRow);
 
-                    boolean pass = ls1.updateArray(number[0]);
-                    if (!pass) {
-                        ls2.updateArray(number[1]);
-                    }
+                         boolean pass = ls1.updateArray(number[0]);
+                        if (!pass) {
+                             ls2.updateArray(number[1]);
+                        }
                     score = score + 3;
                     isSolved(ls1, ls2, value);
-                } else{
-                        Toast.makeText(Board.this, "Not enough spaces filled for solve, " +
-                                "please fill in more spaces first.", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    System.out.println("Cant solve MOLS for 6");
-                    }
+                    } else{
+                            Toast.makeText(Board.this, "Not enough spaces filled for solve, " +
+                                    "please fill in more spaces first.", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        System.out.println("Cant solve MOLS for 6");
+                        }
             }
         });
 

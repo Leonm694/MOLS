@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/textColour"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:layout_marginBottom="20dp"/>
 
         <com.google.android.material.textview.MaterialTextView
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/textColour"
-            android:textSize="34sp"
+            android:textSize="30sp"
             android:layout_marginBottom="30dp"/>
 
         <com.google.android.material.button.MaterialButton
