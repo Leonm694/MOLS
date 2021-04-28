@@ -169,7 +169,7 @@ public class Board extends Activity {
                     if ((x < 45) || (x < 47 && value == 7)){
                         int[] ls1ColRow = ls1.getColAndRow();
                         int[] ls2ColRow = ls2.getColAndRow();
-                        int[] number = cleanUp(a, b, value, ls1ColRow, ls2ColRow);
+                        int[] number = bTrack(a, b, value, ls1ColRow, ls2ColRow);
 
                          boolean pass = ls1.updateArray(number[0]);
                         if (!pass) {
@@ -377,7 +377,6 @@ public class Board extends Activity {
                }
 
                for (Object [] element : pairs){
-
                    if (Arrays.deepToString(element).equals(Arrays.deepToString(a))){
                        return false;
                    }
@@ -410,9 +409,8 @@ public class Board extends Activity {
      * @param value represents the order N
      */
     public void removePieces(int[][] array, int value){
-        int numberOfBlanks = (int) Math.floor((((double) value * (double) value)/2)/(double)value);
+        int numberOfBlanks = (int) Math.floor((double)value/2);
         Random random = new Random();
-
 
         for (int j = 0; j <2; j++) {
             int r = random.nextInt(value);
@@ -459,7 +457,7 @@ public class Board extends Activity {
      * @param ls2RC Represents the position selected in Latin square 2
      * @returns values that are to be placed in either ls1 or Ls2
      */
-    public int[] cleanUp (int[][] array, int[][]arrayTwo, int value, int[] ls1RC, int[] ls2RC){
+    public int[] bTrack (int[][] array, int[][]arrayTwo, int value, int[] ls1RC, int[] ls2RC){
         int x = 0;
         int y = 0;
         int[][] a = new int[value][value];
@@ -477,16 +475,16 @@ public class Board extends Activity {
             Toast.makeText(Board.this, "No possible solution, " +
                     "please change existing values", Toast.LENGTH_SHORT).show();
         }
-        System.out.println("a " + Arrays.deepToString(a));
-        System.out.println("b " + Arrays.deepToString(b));
+        //System.out.println("a " + Arrays.deepToString(a));
+        //System.out.println("b " + Arrays.deepToString(b));
 
         if(ls1RC[0] != -1 || ls1RC[1] != -1){
-            System.out.println("wooo" + ls1RC[0] + " and" + ls1RC[1]);
+            //System.out.println("wooo" + ls1RC[0] + " and" + ls1RC[1]);
             x = a[ls1RC[1]-1][ls1RC[0]-1];
         }
 
         if(ls2RC[0] != -1 || ls2RC[1] != -1){
-            System.out.println("wooo" + ls2RC[0] + " and" + ls2RC[1]);
+            //System.out.println("wooo" + ls2RC[0] + " and" + ls2RC[1]);
             y = b[ls2RC[1]-1][ls2RC[0]-1];
         }
         return new int[]{x,y};

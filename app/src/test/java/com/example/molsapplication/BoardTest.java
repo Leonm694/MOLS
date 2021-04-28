@@ -1,6 +1,10 @@
 package com.example.molsapplication;
 
+import android.app.Activity;
+
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
 
@@ -12,16 +16,21 @@ class BoardTest {
     int[][] a2 = {{2,3,4},{3,4,2}, {4,2,3}};
     int[][] a3 = {{1,2,0},{2,0,1}, {3,0,0}};
     int[][] b = {{1,2,3},{0,1,2}, {2,3,1}};
+    int[][] c = {{1,2,3},{1,1,2}, {2,3,1}};
     int[]ls1CR = {2, 2};
     int[]ls2CR = {1, 2};
+
 
     @Test
     void checkLine() {
         assertTrue(board.checkLine(a, 3));
+        assertFalse(board.checkLine(b, 3));
+        assertFalse(board.checkLine(b, 3));
     }
     @Test
     void mutualOrthCheck() {
         assertTrue(board.mutualOrthCheck(a, b, 3));
+        assertFalse(board.mutualOrthCheck(a, c, 3));
     }
     @Test
     void fillArray() {
@@ -55,9 +64,11 @@ class BoardTest {
         assertEquals(0, count);
     }
     @Test
-    void cleanUp() {
-        int[] number = board.cleanUp(a3, b, 3, ls1CR, ls2CR);
+    void bTrack() {
+        int[] number = board.bTrack(a3, b, 3, ls1CR, ls2CR);
         assertEquals(number[0], 3);
         assertEquals(number[1], 3);
     }
+
+
 }

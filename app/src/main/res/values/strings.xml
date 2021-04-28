@@ -9,11 +9,31 @@
     <string name="_6_x_6">6 x 6</string>
 
     <string name="rules">Rules</string>
-
     <string name="eulerConjecture">Euler Conjecture</string>
 
-    <string name="rule_script">The rules of the </string>
-    <string name="euler_story">Euler </string>
+    <string name="rule_script">The aim of the game is to produce a pair of mutually orthogonal
+    Latin squares. A latin square is a grid of N rows by N columns. Each row and column must
+    contain one of every value from 1 to N. \n \nFor example if N = 3, each row and column must contain
+    1, 2, 3, meaning each row will differ from on another as will each column. \n
+    \nWhen checking if a pair of Latin squares are mutually orthogonal, each position in The first
+    Latin square will be paired with the corresponding position in the second. Creating a collection
+    of paired positions. For the squares to be mutually orthogonal all pairs must unique and every
+    possible pair must be accounted for. \n \nFor example if N=3 all of the following pairs must be found
+    (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (3, 1), (3,2), (3,3). </string>
+    
+    <string name="euler_story">Leonhard euler, a famous mathematician from the 1700\'s whom worked with
+    Latin squares for much of his research,  was tasked to take 36 officers of different regiment
+    and rank, placing 1 of each in every row and every column, essentially create a mutually orthogonal
+    Latin square of order 6. \n \nHe eventually came to the conclusion that producing a MOLS of order
+    6 was impossible, making the claim that they were only possible for odd numbers and multiples
+    of 4. He was correct that order 6 is impossible, however the rest his claim was disproved as in
+    1959, as a MOLS of order 22 was produced which is neither odd or a multiple of 4. This known as
+    the Euler conjecture.
+
+    \n \nIf you wish to attempt to prove Euler wrong again and produce a pair of mutually orthogonal
+    Latin squares of order 6, please attempt the game mode order 6. This follows the standard rules of the
+    application however solve will not be able to assist you.
+    \n \nHint: It\'s impossible to do, Good luck</string>
 
 
 </resources>
